@@ -10,7 +10,11 @@ import imutils
 import pickle
 import time
 import cv2
-
+import myconnutils
+ 
+#connect to the database
+connection = myconnutils.getConnection()
+print("connect successful")
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--cascade", required=True,
@@ -34,6 +38,8 @@ time.sleep(2.0)
 # start the FPS counter
 fps = FPS().start()
 
+#list of student who are present
+IdentifyPersons=[]
 # loop over frames from the video file stream
 while True:
 	# grab the frame from the threaded video stream and resize it
@@ -81,6 +87,8 @@ while True:
 			for i in matchedIdxs:
 				name = data["names"][i]
 				counts[name] = counts.get(name, 0) + 1
+				print(name)			
+				print("already add") if name in IdentifyPersons else IdentifyPersons.append(name)
 
 			# determine the recognized face with the largest number
 			# of votes (note: in the event of an unlikely tie Python
@@ -89,7 +97,8 @@ while True:
 		
 		# update the list of names
 		names.append(name)
-
+		print(IdentifyPersons)
+                
 	# loop over the recognized faces
 	for ((top, right, bottom, left), name) in zip(boxes, names):
 		# draw the predicted face name on the image
@@ -105,6 +114,7 @@ while True:
 
 	# if the `q` key was pressed, break from the loop
 	if key == ord("q"):
+        
 		break
 
 	# update the FPS counter
@@ -114,6 +124,26 @@ while True:
 fps.stop()
 print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
 print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
+
+try :     
+    cursore = connection.cursor()          
+    requete = "INSERT INTO enseignant VALUES (11,'diangar','amy','amy','root');"            
+    cursore.execute(requete)
+    #sqlQuery    = "select * from enseignant"   
+
+    #Fetch all the rows - for the SQL Query
+    #cursore.execute(sqlQuery)
+    #rows = cursore.fetchall()
+
+    #for row in rows:
+     #   print(row)
+    connection.commit()
+    print("requete effectuer")
+except Exception as e:
+    print("Exeception occured:{}".format(e))
+finally:
+    cursore.close()
+
 
 # do a bit of cleanup
 cv2.destroyAllWindows()
