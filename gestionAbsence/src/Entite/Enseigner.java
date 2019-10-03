@@ -10,5 +10,31 @@ package Entite;
  * @author seck
  */
 public class Enseigner {
+    private Enseignant enseignant;
+    private Module module;
+
+    public Enseigner() {
+    }
+
+    public Enseigner(Enseignant enseignant, Module module) {
+        this.enseignant = enseignant;
+        this.module = module;
+    }
+
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
+    }
     
 }

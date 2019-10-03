@@ -7,6 +7,7 @@
 package frame;
 
 import BDD.Requete;
+import Entite.Admin;
 import javax.swing.JOptionPane;
 
 /**
@@ -196,12 +197,7 @@ public class formulaireEtudiant extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aucun champ ne doit etre vide");
     }
         else{
-            String requete ="INSERT INTO etudiant (nom_etudiant,prenom_etudiant,sexe,datenaissance_etudiant,numerocarte,email_etudiant,"
-                    + "tel_etudiant )"
-                    + "VALUES ('"+jTextField_nom.getText()+"','"+jTextField_prenom.getText()+"','"+jComboBox1.getSelectedItem().toString()+
-                    "','"+dateChooserCombo1.getText()+"','"+jTextField_numero_carte.getText()+"','"+jTextField_email.getText()+
-                    "','"+jTextField_tel.getText()+"')";
-            req.exeCreate(requete);
+            
             JOptionPane.showMessageDialog(null, "Insertion effectuée");
             
         }

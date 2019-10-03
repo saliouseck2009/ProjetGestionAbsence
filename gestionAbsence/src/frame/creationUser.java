@@ -6,6 +6,7 @@
 package frame;
 
 import BDD.Requete;
+import Entite.Admin;
 import Test.md5;
 import javax.swing.JOptionPane;
 
@@ -19,6 +20,7 @@ public class creationUser extends javax.swing.JFrame {
      
     Requete req = new Requete();
     md5 hacher = new md5();
+    Admin admin = new Admin();
     /**
      * Creates new form creationUser
      */

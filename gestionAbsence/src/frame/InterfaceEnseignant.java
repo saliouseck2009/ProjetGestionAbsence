@@ -225,8 +225,8 @@ public class InterfaceEnseignant extends javax.swing.JFrame {
     ResultSet res = requete.exeRead(req);       
         try {
             while (res.next()){
-                Etudiant Et = new Etudiant(res.getInt(1), res.getString(2), res.getString(3),null, res.getString(4));
-                list.add(Et);
+                //Etudiant Et = new Etudiant(res.getInt(1), res.getString(2), res.getString(3),null, res.getString(4));
+               // list.add(Et);
             }
         } catch (SQLException ex) {
             Logger.getLogger(InterfaceEnseignant.class.getName()).log(Level.SEVERE, null, ex);
@@ -243,7 +243,6 @@ public class InterfaceEnseignant extends javax.swing.JFrame {
             rowData[0] = list.get(i).getIdEtudiant();
             rowData[1] = list.get(i).getNom();
             rowData[2] = list.get(i).getPrenom();
-            rowData[3] = list.get(i).getStatus();
             model.addRow(rowData);
         }
     }
