@@ -6,8 +6,11 @@
 package Test;
 
 import Entite.Classe;
+import Entite.User;
 import frame.InterfaceConnexion;
+import java.util.ArrayList;
 import search.SearchClasse;
+import search.SearchUser;
 
 
 
@@ -18,9 +21,9 @@ import search.SearchClasse;
 public class NewClass {
       public static void main(String args[]){
    
-          SearchClasse Sc = new SearchClasse();
-          Classe clas = Sc.RechercherParNomClasse("L2TDSI");
-          System.out.println(clas.getNomClasse()+" "+clas.getAnneeScolaire()+" "+clas.getIdClasse());
+          SearchUser Sc = new SearchUser();
+          ArrayList<User> clas = Sc.RechercherParlogin("seck");
+          System.out.println(clas.get(0).getLogin()+clas.get(0).getProfil());
             /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

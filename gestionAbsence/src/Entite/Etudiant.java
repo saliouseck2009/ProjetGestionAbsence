@@ -12,8 +12,8 @@ public class Etudiant {
     private Classe classe;
     private String emailEtudiant;
     private String telEtudiant;
-    private String emailEnseignant;
-    private int idUser;
+    private String sexe;
+    private User user;
     private String numeroCarte;
     private String statusEtudiant;
     private String dateNaissance;
@@ -23,15 +23,15 @@ public class Etudiant {
        
     }
 
-    public Etudiant(int idEtudiant, String nom, String prenom, Classe classe, String emailEtudiant, String telEtudiant, String emailEnseignant, int idUser, String numeroCarte, String statusEtudiant, String dateNaissance) {
+    public Etudiant(int idEtudiant, String nom, String prenom, Classe classe, String emailEtudiant, String telEtudiant,String sexe, User user, String numeroCarte, String statusEtudiant, String dateNaissance) {
         this.idEtudiant = idEtudiant;
         this.nom = nom;
         this.prenom = prenom;
         this.classe = classe;
         this.emailEtudiant = emailEtudiant;
         this.telEtudiant = telEtudiant;
-        this.emailEnseignant = emailEnseignant;
-        this.idUser = idUser;
+        this.sexe = sexe;
+        this.user = user;
         this.numeroCarte = numeroCarte;
         this.statusEtudiant = statusEtudiant;
         this.dateNaissance = dateNaissance;
@@ -85,20 +85,20 @@ public class Etudiant {
         this.telEtudiant = telEtudiant;
     }
 
-    public String getEmailEnseignant() {
-        return emailEnseignant;
+    public String getSexe() {
+        return sexe;
     }
 
-    public void setEmailEnseignant(String emailEnseignant) {
-        this.emailEnseignant = emailEnseignant;
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getNumeroCarte() {

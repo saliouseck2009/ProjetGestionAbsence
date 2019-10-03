@@ -9,6 +9,7 @@ import BDD.Requete;
 import Entite.Classe;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,8 +40,9 @@ public class SearchClasse {
        
     }
      
-     public Classe RechercherParNomClasse(String classe) {
-        String req = "SELECT * FROM classe WHERE nom_classe="+classe;
+     public ArrayList<Classe> RechercherParNomClasse(String classe) {
+        String req = "SELECT * FROM classe WHERE nom_classe='" + classe + "'";
+        ArrayList<Classe> liste = new ArrayList<>();
         Classe c = new Classe();
         ResultSet res = requete.exeRead(req);
         
@@ -49,15 +51,33 @@ public class SearchClasse {
                 c.setIdClasse(res.getInt(1));
                 c.setNomClasse((res.getString(2)));
                 c.setAnneeScolaire(res.getString(3));
-
+                liste.add(c);
             }
         } catch (SQLException ex) {
             Logger.getLogger(SearchClasse.class.getName()).log(Level.SEVERE, null, ex);
         }
-            return c;
+            return liste;
        
     }
-     public static void main(){
-         
-     }
+     
+    public ArrayList<Classe> RechercherParAnnee(String annee) {
+        String req = "SELECT * FROM classe WHERE annee_scolaire='" + annee + "'";
+        ArrayList<Classe> liste = new ArrayList<>();
+        Classe c = new Classe();
+        ResultSet res = requete.exeRead(req);
+        
+        try {
+            while (res.next()) {
+                c.setIdClasse(res.getInt(1));
+                c.setNomClasse((res.getString(2)));
+                c.setAnneeScolaire(res.getString(3));
+                liste.add(c);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchClasse.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return liste;
+       
+    }
+     
 }
