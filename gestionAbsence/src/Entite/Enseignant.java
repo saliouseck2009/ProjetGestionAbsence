@@ -24,6 +24,14 @@ public class Enseignant  {
         this.idUser = idUser;
     }
 
+    public Enseignant(int idUser) {
+        this.idUser = idUser;
+    }
+
+    
+    
+    
+
     public int getIdEnseignant() {
         return idEnseignant;
     }

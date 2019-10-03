@@ -17,6 +17,7 @@ public class Etudiant {
     private String numeroCarte;
     private String statusEtudiant;
     private String dateNaissance;
+    public String get;
     
 
     public Etudiant() {
@@ -37,6 +38,12 @@ public class Etudiant {
         this.dateNaissance = dateNaissance;
     }
 
+    public Etudiant(int idEtudiant) {
+        this.idEtudiant = idEtudiant;
+    }
+
+    
+    
     public int getIdEtudiant() {
         return idEtudiant;
     }

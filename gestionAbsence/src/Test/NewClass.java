@@ -6,11 +6,18 @@
 package Test;
 
 import Entite.Classe;
+import Entite.Etudiant;
 import Entite.User;
+import Entite.Enseignant;
+import Entite.Module;
+import search.SearchModule;
 import frame.InterfaceConnexion;
 import java.util.ArrayList;
 import search.SearchClasse;
+import search.SearchEtudiant;
 import search.SearchUser;
+import search.SearchEnseignant;
+
 
 
 
@@ -21,9 +28,11 @@ import search.SearchUser;
 public class NewClass {
       public static void main(String args[]){
    
-          SearchUser Sc = new SearchUser();
-          ArrayList<User> clas = Sc.RechercherParlogin("seck");
-          System.out.println(clas.get(0).getLogin()+clas.get(0).getProfil());
+          SearchModule mod = new SearchModule();
+          ArrayList<Module> clas = mod.RechercherParHeurfin(12);
+          //Etudiant clas = Sc.RechercherParId(1);
+          System.out.println(clas.get(0).getHeureDebut()+" "+clas.get(0).getHeureFin()+" "+clas.get(0).getNomModule());
+          //System.out.println(clas.getEmailEtudiant());
             /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -53,7 +62,11 @@ public class NewClass {
 //                new InterfaceConnexion().setVisible(true);
 //            }
 //        });
- 
+        
+        
+            
+        
+        
          
          
     }

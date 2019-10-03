@@ -9,11 +9,6 @@ package Entite;
  *
  * @author seck
  */
-public class listePresence {
-    private Etudiant etudiant;
-    private Module module;
-    private String heureCours;
-    
+public class Enseigner {
     
 }
-

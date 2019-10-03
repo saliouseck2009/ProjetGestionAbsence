@@ -22,6 +22,10 @@ public class User {
         this.pwd = pwd;
     }
 
+    public User(int id_user) {
+        this.id_user = id_user;
+    }
+    
     public User() {
         
     }
