@@ -8,6 +8,7 @@ package frame;
 import BDD.Requete;
 import Entite.Admin;
 import Test.md5;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -26,6 +27,8 @@ public class creationUser extends javax.swing.JFrame {
      */
     public creationUser() {
         initComponents();
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+
     }
 
     /**
