@@ -5,7 +5,17 @@
  */
 package frame;
 
+import Entite.Classe;
+import Entite.Etudiant;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+import search.SearchClasse;
+import search.SearchEtudiant;
 
 /**
  *
@@ -13,6 +23,10 @@ import javax.swing.JFrame;
  */
 public class Acceuil_Etudiant extends javax.swing.JFrame {
 
+    SearchClasse sc = new SearchClasse();
+    SearchEtudiant se = new SearchEtudiant(); 
+    ArrayList<Etudiant> listEt;
+    
     /**
      * Creates new form acceuil
      */
@@ -64,7 +78,7 @@ public class Acceuil_Etudiant extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jButton_Mail = new javax.swing.JButton();
         jButton_imprimer1 = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboBox_chooseClasse = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,9 +200,17 @@ public class Acceuil_Etudiant extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "num carte", "Nom", "Prenom", "email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -389,16 +411,21 @@ public class Acceuil_Etudiant extends javax.swing.JFrame {
         getContentPane().add(jPanel6);
         jPanel6.setBounds(690, 550, 170, 120);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L1TDSI", "L2TDSI", "L3TDSI" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_chooseClasse.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L1TDSI", "L2TDSI", "L3TDSI" }));
+        jComboBox_chooseClasse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                jComboBox_chooseClasseActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox2);
-        jComboBox2.setBounds(70, 26, 150, 40);
+        getContentPane().add(jComboBox_chooseClasse);
+        jComboBox_chooseClasse.setBounds(70, 26, 150, 40);
 
         jButton1.setText("recherche");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(80, 90, 130, 32);
 
@@ -425,10 +452,33 @@ public class Acceuil_Etudiant extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_emailActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void jComboBox_chooseClasseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_chooseClasseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_jComboBox_chooseClasseActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String classe = jComboBox_chooseClasse.getSelectedItem().toString();
+        ArrayList<Classe> listCl  = sc.RechercherParNomClasse(classe);
+        listEt = se.RechercherParClasse(listCl.get(1));
+        
+        
+        
+         
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+     public void addRowToTable(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        ArrayList<Etudiant> list = listEt;
+        Object rowData[] = new Object[4];
+        for (int i = 0; i < list.size(); i++) {
+            rowData[0] = list.get(i).getNumeroCarte();
+            rowData[1] = list.get(i).getNom();
+            rowData[2] = list.get(i).getPrenom();
+            rowData[3] = list.get(i).getPrenom();
+            model.addRow(rowData);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -481,7 +531,7 @@ public class Acceuil_Etudiant extends javax.swing.JFrame {
     private javax.swing.JButton jButton_nouveau;
     private javax.swing.JButton jButton_prof4;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox_chooseClasse;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_dateNaissance;
