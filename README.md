@@ -1,1 +1,1 @@
-# ProjetGestionAbsence
+Ce projet permet de gérer les absences par reconnaissance. Le projet est composée de deux applications.Une application python de reconnaissance facial qui utilise opencv avec python sur un raspberry. Une autre application java desktop d'administration que les professeurs et surveillants utilise pour suivre les absences.
